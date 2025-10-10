@@ -1,3 +1,7 @@
+//Live share who was here
+// Jayden Ramirez
+// Diego Tiscareno
+
 import exampleIconUrl from "./noun-paperclip-7598668-00449F.png";
 import "./style.css";
 
@@ -9,11 +13,8 @@ document.body.innerHTML = `
 
 // const button = document.getElementById('myButton') as HTMLButtonElement;
 
-const button = document.createElement('button');
+const button = document.createElement("button");
 document.body.appendChild(button);
-button.textContent = '🍪';
+button.textContent = "🍪";
 // button.style.backgroundColor = 'white';
-button.style.color = 'white';
-
-
-
+button.style.color = "white";
