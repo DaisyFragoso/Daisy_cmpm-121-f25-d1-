@@ -20,7 +20,7 @@ let count = 0;
 const counter = document.getElementById("counter") as HTMLSpanElement;
 
 function updatecounterDisplayHelper() {
-  counter.textContent = count.toString();
+  counter.textContent = count.toFixed(1);
 }
 
 button.addEventListener("click", () => {
@@ -29,8 +29,23 @@ button.addEventListener("click", () => {
   updatecounterDisplayHelper();
 });
 
-//step 3 increases every second
-setInterval(() => {
-  count += 1;
-  updatecounterDisplayHelper();
-}, 1000);
+//step 4
+let lastTimestamp: number | null = null;
+
+function animate(timestamp: number) {
+  if (lastTimestamp === null) {
+    lastTimestamp = timestamp;
+  } else {
+    const deltaMs = timestamp - lastTimestamp;
+    lastTimestamp = timestamp;
+
+    const deltaSeconds = deltaMs / 1000;
+
+    count += deltaSeconds;
+    updatecounterDisplayHelper();
+  }
+
+  requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
