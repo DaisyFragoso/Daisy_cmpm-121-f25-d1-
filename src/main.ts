@@ -2,19 +2,24 @@
 // Jayden Ramirez
 // Diego Tiscareno
 
-import exampleIconUrl from "./noun-paperclip-7598668-00449F.png";
 import "./style.css";
+import cookiebuttonImgUrl from "./cookie.png";
 
 document.body.innerHTML = `
-  <p>Example image asset: <img src="${exampleIconUrl}" class="icon" /></p>
   <p>Counter: <span id="counter">0</span></p>
-
 `;
 
-// const button = document.getElementById('myButton') as HTMLButtonElement;
-
 const button = document.createElement("button");
+button.innerHTML = `<img src="${cookiebuttonImgUrl}" alt="button icon" style="width:40px; height:40px;" />`;
+button.style.padding = "0.5rem 1rem";
+
 document.body.appendChild(button);
-button.textContent = "🍪";
-// button.style.backgroundColor = 'white';
-button.style.color = "white";
+
+let count = 0;
+const counter = document.getElementById("counter") as HTMLSpanElement | null;
+
+button.addEventListener("click", () => { 
+  if (!counter) return;
+  count++;
+  counter.textContent = count.toString();
+})
