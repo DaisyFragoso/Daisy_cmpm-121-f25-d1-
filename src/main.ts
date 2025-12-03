@@ -2,6 +2,8 @@
 // Jayden Ramirez
 // Diego Tiscareno
 
+//note last commit step 6 
+
 import cookiebuttonImgUrl from "./cookie.png";
 import "./style.css";
 
