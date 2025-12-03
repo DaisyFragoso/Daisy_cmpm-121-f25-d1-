@@ -2,11 +2,11 @@
 // Jayden Ramirez
 // Diego Tiscareno
 
-import "./style.css";
 import cookiebuttonImgUrl from "./cookie.png";
+import "./style.css";
 
 document.body.innerHTML = `
-  <p>Counter: <span id="counter">0</span></p>
+  <p>🍪 <span id="counter">0</span> Cookies clicked! </p>
 `;
 
 const button = document.createElement("button");
