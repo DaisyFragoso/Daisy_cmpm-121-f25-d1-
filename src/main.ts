@@ -52,10 +52,10 @@ let countA = 0;
 let countB = 0;
 let countC = 0;
 
-//amount of times items been ordered
-const COST_A = 10;
-const COST_B = 100;
-const COST_C = 1000;
+//cost of items been ordered
+let costA = 10;
+let costB = 100;
+let costC = 1000;
 
 //rates of upgrade
 const RATE_A = 0.1;
@@ -85,9 +85,16 @@ function updateUpgradeCountsDisplay() {
 }
 
 function updateUpgradeButtonsEnabled() {
-  upgradeAButton.disabled = count < COST_A;
-  upgradeBButton.disabled = count < COST_B;
-  upgradeCButton.disabled = count < COST_C;
+  upgradeAButton.disabled = count < costA;
+  upgradeBButton.disabled = count < costB;
+  upgradeCButton.disabled = count < costC;
+}
+function updateUpgradeButtonText() {
+  upgradeAButton.textContent = `🥛 Milk: Cost ${costA.toFixed(1)} (+0.1/sec)`;
+  upgradeBButton.textContent = `🍊 Orange Juice: Cost ${
+    costB.toFixed(1)
+  } (+2/sec)`;
+  upgradeCButton.textContent = `🍔 Food: Cost ${costC.toFixed(1)} (+50/sec)`;
 }
 
 //inital button increase
@@ -100,41 +107,50 @@ button.addEventListener("click", () => {
 
 //upgrade buttom handlers
 upgradeAButton.addEventListener("click", () => {
-  if (count >= COST_A) {
-    count -= COST_A;
+  if (count >= costA) {
+    count -= costA;
     growthRate += RATE_A;
     countA += 1;
+
+    costA *= 1.15;
 
     updatecounterDisplayHelper();
     updateRateDisplay();
     updateUpgradeCountsDisplay();
     updateUpgradeButtonsEnabled();
+    updateUpgradeButtonText();
   }
 });
 
 upgradeBButton.addEventListener("click", () => {
-  if (count >= COST_B) {
-    count -= COST_B;
+  if (count >= costB) {
+    count -= costB;
     growthRate += RATE_B;
     countB += 1;
+
+    costB *= 1.15;
 
     updatecounterDisplayHelper();
     updateRateDisplay();
     updateUpgradeCountsDisplay();
     updateUpgradeButtonsEnabled();
+    updateUpgradeButtonText();
   }
 });
 
 upgradeCButton.addEventListener("click", () => {
-  if (count >= COST_C) {
-    count -= COST_C;
+  if (count >= costC) {
+    count -= costC;
     growthRate += RATE_C;
     countC += 1;
+
+    costC *= 1.15;
 
     updatecounterDisplayHelper();
     updateRateDisplay();
     updateUpgradeCountsDisplay();
     updateUpgradeButtonsEnabled();
+    updateUpgradeButtonText();
   }
 });
 
