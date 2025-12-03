@@ -2,15 +2,13 @@
 // Jayden Ramirez
 // Diego Tiscareno
 
-//note last commit step 6
-
-import cookiebuttonImgUrl from "./cookie.png";
+import cookiebuttonImgUrl from "./dude.png";
 import "./style.css";
 
 //initial stuff
 document.body.innerHTML = `
-  <p>🍪 <span id="counter">0</span> Cookies collected!</p>
-  <p>Rate: <span id="rate">0.0</span> cookies/sec</p>
+  <p>🍪 <span id="counter">0</span> Oscar the Grouch growth (cms)!</p>
+  <p>Rate: <span id="rate">0.0</span> growth/sec (in cms)</p>
   <p>
     Upgrades owned:<br>
     Milk: <span id="countA">0</span><br>
@@ -22,26 +20,30 @@ document.body.innerHTML = `
 //inital button
 const button = document.createElement("button");
 button.innerHTML =
-  `<img src="${cookiebuttonImgUrl}" alt="button icon" style="width:40px; height:40px;" />`;
+  `<img src="${cookiebuttonImgUrl}" alt="button icon" style="width:200px; height:200px;" />`;
 button.style.padding = "0.5rem 1rem";
 document.body.appendChild(button);
 
 //A: milk purchase button
 const upgradeAButton = document.createElement("button");
-upgradeAButton.textContent = "🥛 want milk? (Cost 10) (+1 per second)";
+upgradeAButton.textContent = "🥛 want milk? (Cost 10.0) (+0.1 per second)";
 upgradeAButton.disabled = true;
+document.body.appendChild(document.createElement("br"));
+document.body.appendChild(document.createElement("br"));
 document.body.appendChild(upgradeAButton);
 
 //B: Orange Juice
 const upgradeBButton = document.createElement("button");
-upgradeBButton.textContent = " want Orange Juice? (Cost 100) (+2 per second)";
+upgradeBButton.textContent = "🍊 Orange Juice: (Cost 100.0) (+2 per second)";
 upgradeBButton.disabled = true;
+document.body.appendChild(document.createElement("br"));
 document.body.appendChild(upgradeBButton);
 
 //C: Food
 const upgradeCButton = document.createElement("button");
-upgradeCButton.textContent = "Upgrade C: Cost 1000 (+50/sec)";
+upgradeCButton.textContent = "🍔 Food: (Cost 1000.0) (+50 per second)";
 upgradeCButton.disabled = true;
+document.body.appendChild(document.createElement("br"));
 document.body.appendChild(upgradeCButton);
 
 let count = 0;
@@ -90,11 +92,15 @@ function updateUpgradeButtonsEnabled() {
   upgradeCButton.disabled = count < costC;
 }
 function updateUpgradeButtonText() {
-  upgradeAButton.textContent = `🥛 Milk: Cost ${costA.toFixed(1)} (+0.1/sec)`;
-  upgradeBButton.textContent = `🍊 Orange Juice: Cost ${
+  upgradeAButton.textContent = `🥛 want milk?: (Cost ${
+    costA.toFixed(1)
+  }) (+0.1 per second)`;
+  upgradeBButton.textContent = `🍊 Orange Juice: (Cost ${
     costB.toFixed(1)
-  } (+2/sec)`;
-  upgradeCButton.textContent = `🍔 Food: Cost ${costC.toFixed(1)} (+50/sec)`;
+  }) (+2 per second)`;
+  upgradeCButton.textContent = `🍔 Food: (Cost ${
+    costC.toFixed(1)
+  }) (+50 per second)`;
 }
 
 //inital button increase
