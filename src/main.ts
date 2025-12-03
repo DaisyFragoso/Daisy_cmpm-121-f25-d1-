@@ -10,7 +10,8 @@ document.body.innerHTML = `
 `;
 
 const button = document.createElement("button");
-button.innerHTML = `<img src="${cookiebuttonImgUrl}" alt="button icon" style="width:40px; height:40px;" />`;
+button.innerHTML =
+  `<img src="${cookiebuttonImgUrl}" alt="button icon" style="width:40px; height:40px;" />`;
 button.style.padding = "0.5rem 1rem";
 
 document.body.appendChild(button);
@@ -18,8 +19,8 @@ document.body.appendChild(button);
 let count = 0;
 const counter = document.getElementById("counter") as HTMLSpanElement | null;
 
-button.addEventListener("click", () => { 
+button.addEventListener("click", () => {
   if (!counter) return;
   count++;
   counter.textContent = count.toString();
-})
+});
