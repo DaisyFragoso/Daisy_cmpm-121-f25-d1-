@@ -5,7 +5,9 @@
 import cookiebuttonImgUrl from "./dude.png";
 import "./style.css";
 
-//initial stuff
+// ====================
+// Initial setup
+// ====================
 document.body.innerHTML = `
   <p>🍪 <span id="counter">0</span> Oscar the Grouch growth (cms)!</p>
   <p>Rate: <span id="rate">0.0</span> growth/sec (in cms)</p>
@@ -17,14 +19,18 @@ document.body.innerHTML = `
   </p>
 `;
 
-//inital button
+// ====================
+// Initial button
+// ====================
 const button = document.createElement("button");
 button.innerHTML =
   `<img src="${cookiebuttonImgUrl}" alt="button icon" style="width:200px; height:200px;" />`;
 button.style.padding = "0.5rem 1rem";
 document.body.appendChild(button);
 
-//A: milk purchase button
+// ====================
+// Milk purchase button
+// ====================
 const upgradeAButton = document.createElement("button");
 upgradeAButton.textContent = "🥛 want milk? (Cost 10.0) (+0.1 per second)";
 upgradeAButton.disabled = true;
@@ -32,60 +38,75 @@ document.body.appendChild(document.createElement("br"));
 document.body.appendChild(document.createElement("br"));
 document.body.appendChild(upgradeAButton);
 
-//B: Orange Juice
+// ====================
+// Orange Juice button
+// ====================
 const upgradeBButton = document.createElement("button");
 upgradeBButton.textContent = "🍊 Orange Juice: (Cost 100.0) (+2 per second)";
 upgradeBButton.disabled = true;
 document.body.appendChild(document.createElement("br"));
 document.body.appendChild(upgradeBButton);
 
-//C: Food
+// ====================
+// Food purchase button
+// ====================
 const upgradeCButton = document.createElement("button");
 upgradeCButton.textContent = "🍔 Food: (Cost 1000.0) (+50 per second)";
 upgradeCButton.disabled = true;
 document.body.appendChild(document.createElement("br"));
 document.body.appendChild(upgradeCButton);
 
-let count = 0;
 
+// ================================
+// Constants count and growth rate
+// ================================
+let count = 0;
 let growthRate = 0;
 
+// ================================
+// Constants game variable
+// ================================
 let milkCount = 0;
 let juiceCount = 0;
 let foodCount = 0;
 
-//cost of items been ordered
+// ================================
+// Constants game cost
+// ================================
 let milkCost = 10;
 let juiceCost = 100;
 let foodCost = 1000;
 
-//rates of upgrade
+// ====================
+// Rates of upgrade
+// ====================
 const milkRate = 0.1;
 const juiceRate = 2.0;
 const foodRate = 50.0;
 
-//status of elements
+// ====================
+// Status of elements
+// ====================
 const counter = document.getElementById("counter") as HTMLSpanElement;
 const rateSpan = document.getElementById("rate") as HTMLSpanElement;
 const milkCountSpan = document.getElementById("milkCount") as HTMLSpanElement;
 const juiceCountSpan = document.getElementById("juiceCount") as HTMLSpanElement;
 const foodCountSpan = document.getElementById("foodCount") as HTMLSpanElement;
 
-//update display
+// ====================
+// Update displays
+// ====================
 function updatecounterDisplayHelper() {
   counter.textContent = count.toFixed(1);
 }
-
 function updateRateDisplay() {
   rateSpan.textContent = growthRate.toFixed(1);
 }
-
 function updateUpgradeCountsDisplay() {
   milkCountSpan.textContent = milkCount.toString();
   juiceCountSpan.textContent = juiceCount.toString();
   foodCountSpan.textContent = foodCount.toString();
 }
-
 function updateUpgradeButtonsEnabled() {
   upgradeAButton.disabled = count < milkCost;
   upgradeBButton.disabled = count < juiceCost;
@@ -103,7 +124,9 @@ function updateUpgradeButtonText() {
   }) (+50 per second)`;
 }
 
-//inital button increase
+// =============================
+// Inital image button increase
+// =============================
 button.addEventListener("click", () => {
   if (!counter) return;
   count++;
@@ -111,7 +134,9 @@ button.addEventListener("click", () => {
   updateUpgradeButtonsEnabled();
 });
 
-//upgrade buttom handlers
+// =============================
+// Upgrade buttom handlers
+// =============================
 upgradeAButton.addEventListener("click", () => {
   if (count >= milkCost) {
     count -= milkCost;
@@ -127,7 +152,6 @@ upgradeAButton.addEventListener("click", () => {
     updateUpgradeButtonText();
   }
 });
-
 upgradeBButton.addEventListener("click", () => {
   if (count >= juiceCost) {
     count -= juiceCost;
@@ -143,7 +167,6 @@ upgradeBButton.addEventListener("click", () => {
     updateUpgradeButtonText();
   }
 });
-
 upgradeCButton.addEventListener("click", () => {
   if (count >= foodCost) {
     count -= foodCost;
@@ -160,12 +183,13 @@ upgradeCButton.addEventListener("click", () => {
   }
 });
 
-//enables and disables the upgrade button
+// ==========================================
+// enables and disables the upgrade button
+// ==========================================
 function upgradeEnableDisableHelper() {
   upgradeAButton.disabled = count < 10;
 }
 
-//step 4
 let lastTimestamp: number | null = null;
 
 function animate(timestamp: number) {
