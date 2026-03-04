@@ -5,8 +5,24 @@
 // ====================
 // Imports
 // ====================
+import biteSoundUrl from "./biteSound.mp3";
 import cookiebuttonImgUrl from "./dude.png";
 import "./style.css";
+
+// ==================
+// Constants sound
+// ==================
+const eatSound = new Audio(biteSoundUrl);
+eatSound.volume = 0.7;
+
+//checks
+eatSound.addEventListener("canplaythrough", () => {
+  console.log("Sound loaded. volume =", eatSound.volume);
+});
+
+eatSound.addEventListener("error", () => {
+  console.log("Sound failed to load. Check the path/filename.");
+});
 
 // ================================
 // Constants count and growth rate
@@ -143,6 +159,9 @@ button.addEventListener("click", () => {
 // =============================
 upgradeMilkButton.addEventListener("click", () => {
   if (count >= milkCost) {
+    eatSound.currentTime = 0;
+    eatSound.play();
+
     count -= milkCost;
     growthRate += milkRate;
     milkCount += 1;
@@ -158,6 +177,9 @@ upgradeMilkButton.addEventListener("click", () => {
 });
 upgradeJuiceButton.addEventListener("click", () => {
   if (count >= juiceCost) {
+    eatSound.currentTime = 0;
+    eatSound.play();
+
     count -= juiceCost;
     growthRate += juiceRate;
     juiceCount += 1;
@@ -173,6 +195,9 @@ upgradeJuiceButton.addEventListener("click", () => {
 });
 upgradeFoodButton.addEventListener("click", () => {
   if (count >= foodCost) {
+    eatSound.currentTime = 0;
+    eatSound.play();
+
     count -= foodCost;
     growthRate += foodRate;
     foodCount += 1;
