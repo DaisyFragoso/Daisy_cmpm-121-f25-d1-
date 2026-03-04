@@ -2,6 +2,7 @@
    Page Layout
 ========================= */
 body {
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +13,18 @@ body {
   text-align: center;
   background-color: #ffcc00;
 }
+/* background controlled by JS */
+.app-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-color: #ffcc00;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 /* =========================
    Text Styling
@@ -19,6 +32,10 @@ body {
 p {
   font-size: 1.3rem;
   margin: 10px 0;
+  background-color: white;
+  padding: 5px 5px;
+  border-radius: 8px;
+  border: none;
 }
 
 /* =========================

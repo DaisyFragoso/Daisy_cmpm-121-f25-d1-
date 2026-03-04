@@ -7,6 +7,9 @@
 // ====================
 import biteSoundUrl from "./biteSound.mp3";
 import cookiebuttonImgUrl from "./dude.png";
+import greekImg from "./greekDinning.jpg";
+import pinkDinning from "./pinkDinning.webp";
+import redDinning from "./redDinning.jpg";
 import "./style.css";
 
 // ==================
@@ -14,15 +17,6 @@ import "./style.css";
 // ==================
 const eatSound = new Audio(biteSoundUrl);
 eatSound.volume = 0.7;
-
-//checks
-eatSound.addEventListener("canplaythrough", () => {
-  console.log("Sound loaded. volume =", eatSound.volume);
-});
-
-eatSound.addEventListener("error", () => {
-  console.log("Sound failed to load. Check the path/filename.");
-});
 
 // ================================
 // Constants count and growth rate
@@ -65,6 +59,12 @@ document.body.innerHTML = `
     Food: <span id="foodCount">0</span>
   </p>
 `;
+
+// ====================
+// Background layer
+// ====================
+const bgDiv = document.createElement("div");
+bgDiv.className = "app-bg";
 
 // ====================
 // Status of elements
@@ -154,6 +154,24 @@ button.addEventListener("click", () => {
   updateUpgradeButtonsEnabled();
 });
 
+function checkBackground() {
+  // milk >=1, juice = 0, food = 0
+  if (milkCount >= 1 && juiceCount === 0 && foodCount === 0) {
+    bgDiv.style.backgroundImage = `url(${greekImg})`;
+    document.body.appendChild(bgDiv);
+  } // milk >=1, juice >=1, food = 0
+  else if (milkCount >= 1 && juiceCount >= 1 && foodCount === 0) {
+    bgDiv.style.backgroundImage = `url(${pinkDinning})`;
+    document.body.appendChild(bgDiv);
+  } // milk >=1, juice >=1, food >=1
+  else if (milkCount >= 1 && juiceCount >= 1 && foodCount >= 1) {
+    bgDiv.style.backgroundImage = `url(${redDinning})`;
+    document.body.appendChild(bgDiv);
+  } else {
+    bgDiv.style.backgroundImage = "";
+  }
+}
+
 // =============================
 // Upgrade buttom handlers
 // =============================
@@ -173,6 +191,7 @@ upgradeMilkButton.addEventListener("click", () => {
     updateUpgradeCountsDisplay();
     updateUpgradeButtonsEnabled();
     updateUpgradeButtonText();
+    checkBackground();
   }
 });
 upgradeJuiceButton.addEventListener("click", () => {
@@ -191,6 +210,7 @@ upgradeJuiceButton.addEventListener("click", () => {
     updateUpgradeCountsDisplay();
     updateUpgradeButtonsEnabled();
     updateUpgradeButtonText();
+    checkBackground();
   }
 });
 upgradeFoodButton.addEventListener("click", () => {
@@ -209,6 +229,7 @@ upgradeFoodButton.addEventListener("click", () => {
     updateUpgradeCountsDisplay();
     updateUpgradeButtonsEnabled();
     updateUpgradeButtonText();
+    checkBackground();
   }
 });
 
