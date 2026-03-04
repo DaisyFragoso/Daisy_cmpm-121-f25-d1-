@@ -11,9 +11,9 @@ document.body.innerHTML = `
   <p>Rate: <span id="rate">0.0</span> growth/sec (in cms)</p>
   <p>
     Upgrades owned:<br>
-    Milk: <span id="countA">0</span><br>
-    Orange Juice: <span id="countB">0</span><br>
-    Food: <span id="countC">0</span>
+    Milk: <span id="milkCount">0</span><br>
+    Orange Juice: <span id="juiceCount">0</span><br>
+    Food: <span id="foodCount">0</span>
   </p>
 `;
 
@@ -50,26 +50,26 @@ let count = 0;
 
 let growthRate = 0;
 
-let countA = 0;
-let countB = 0;
-let countC = 0;
+let milkCount = 0;
+let juiceCount = 0;
+let foodCount = 0;
 
 //cost of items been ordered
-let costA = 10;
-let costB = 100;
-let costC = 1000;
+let milkCost = 10;
+let juiceCost = 100;
+let foodCost = 1000;
 
 //rates of upgrade
-const RATE_A = 0.1;
-const RATE_B = 2.0;
-const RATE_C = 50.0;
+const milkRate = 0.1;
+const juiceRate = 2.0;
+const foodRate = 50.0;
 
 //status of elements
 const counter = document.getElementById("counter") as HTMLSpanElement;
 const rateSpan = document.getElementById("rate") as HTMLSpanElement;
-const countASpan = document.getElementById("countA") as HTMLSpanElement;
-const countBSpan = document.getElementById("countB") as HTMLSpanElement;
-const countCSpan = document.getElementById("countC") as HTMLSpanElement;
+const milkCountSpan = document.getElementById("milkCount") as HTMLSpanElement;
+const juiceCountSpan = document.getElementById("juiceCount") as HTMLSpanElement;
+const foodCountSpan = document.getElementById("foodCount") as HTMLSpanElement;
 
 //update display
 function updatecounterDisplayHelper() {
@@ -81,25 +81,25 @@ function updateRateDisplay() {
 }
 
 function updateUpgradeCountsDisplay() {
-  countASpan.textContent = countA.toString();
-  countBSpan.textContent = countB.toString();
-  countCSpan.textContent = countC.toString();
+  milkCountSpan.textContent = milkCount.toString();
+  juiceCountSpan.textContent = juiceCount.toString();
+  foodCountSpan.textContent = foodCount.toString();
 }
 
 function updateUpgradeButtonsEnabled() {
-  upgradeAButton.disabled = count < costA;
-  upgradeBButton.disabled = count < costB;
-  upgradeCButton.disabled = count < costC;
+  upgradeAButton.disabled = count < milkCost;
+  upgradeBButton.disabled = count < juiceCost;
+  upgradeCButton.disabled = count < foodCost;
 }
 function updateUpgradeButtonText() {
   upgradeAButton.textContent = `🥛 want milk?: (Cost ${
-    costA.toFixed(1)
+    milkCost.toFixed(1)
   }) (+0.1 per second)`;
   upgradeBButton.textContent = `🍊 Orange Juice: (Cost ${
-    costB.toFixed(1)
+    juiceCost.toFixed(1)
   }) (+2 per second)`;
   upgradeCButton.textContent = `🍔 Food: (Cost ${
-    costC.toFixed(1)
+    foodCost.toFixed(1)
   }) (+50 per second)`;
 }
 
@@ -113,12 +113,12 @@ button.addEventListener("click", () => {
 
 //upgrade buttom handlers
 upgradeAButton.addEventListener("click", () => {
-  if (count >= costA) {
-    count -= costA;
-    growthRate += RATE_A;
-    countA += 1;
+  if (count >= milkCost) {
+    count -= milkCost;
+    growthRate += milkRate;
+    milkCount += 1;
 
-    costA *= 1.15;
+    milkCost *= 1.15;
 
     updatecounterDisplayHelper();
     updateRateDisplay();
@@ -129,12 +129,12 @@ upgradeAButton.addEventListener("click", () => {
 });
 
 upgradeBButton.addEventListener("click", () => {
-  if (count >= costB) {
-    count -= costB;
-    growthRate += RATE_B;
-    countB += 1;
+  if (count >= juiceCost) {
+    count -= juiceCost;
+    growthRate += juiceRate;
+    juiceCount += 1;
 
-    costB *= 1.15;
+    juiceCost *= 1.15;
 
     updatecounterDisplayHelper();
     updateRateDisplay();
@@ -145,12 +145,12 @@ upgradeBButton.addEventListener("click", () => {
 });
 
 upgradeCButton.addEventListener("click", () => {
-  if (count >= costC) {
-    count -= costC;
-    growthRate += RATE_C;
-    countC += 1;
+  if (count >= foodCost) {
+    count -= foodCost;
+    growthRate += foodRate;
+    foodCount += 1;
 
-    costC *= 1.15;
+    foodCost *= 1.15;
 
     updatecounterDisplayHelper();
     updateRateDisplay();
