@@ -56,7 +56,6 @@ upgradeCButton.disabled = true;
 document.body.appendChild(document.createElement("br"));
 document.body.appendChild(upgradeCButton);
 
-
 // ================================
 // Constants count and growth rate
 // ================================
